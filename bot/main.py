@@ -6,17 +6,34 @@ from telegram.ext import (Updater,
                           Filters,
                           PreCheckoutQueryHandler,
                           PicklePersistence)
-                          
-from core.settings import BOT_ID, DEBUG
+from bot.src.registration import Registration
+from config.settings import DEBUG
+import os
 import logging
 
 logging.basicConfig(level=logging.DEBUG if DEBUG else logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
-updater = Updater('YOUR TOKEN HERE')
+registration = Registration()
 
-updater.dispatcher.add_handler(CommandHandler('hello', hello))
 
-updater.start_polling()
-updater.idle()
+def main():
+    updater = Updater(token=os.getenv("BOT_TOKEN"))
+    dispatcher = updater.dispatcher
+
+
+    main_conversation = ConversationHandler(
+        entry_points = [
+            CommandHandler('start', registration.start)],
+        states = {
+
+        },
+        fallbacks=[
+            CommandHandler('start', registration.start)]
+    )
+    dispatcher.add_handler(main_conversation)
+    
+
+    updater.start_polling()
+    updater.idle()
