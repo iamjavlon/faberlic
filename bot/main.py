@@ -8,6 +8,7 @@ from telegram.ext import (Updater,
                           PicklePersistence)
 from bot.src.registration import Registration
 from config.settings import DEBUG
+from dotenv import load_dotenv
 import os
 import logging
 

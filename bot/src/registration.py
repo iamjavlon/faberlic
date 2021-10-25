@@ -15,4 +15,8 @@ class Registration:
 
     def start(self, update: Update, context: CallbackContext):
         chat_id = update.effective_chat.id
-        context.bot.send_message(chat_id, 'Hello world')
+        first_name = update.effective_user.first_name
+        last_name = update.effective_user.last_name
+        username = (
+            "@" + update.effective_user.username) if update.effective_user.username is not None else None
+        context.bot.send_message(chat_id, f'Hello {username}. Welcome to online shop for products from Faberlic')
