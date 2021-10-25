@@ -8,10 +8,11 @@ from telegram.ext import (Updater,
                           PicklePersistence)
 from bot.src.registration import Registration
 from config.settings import DEBUG
-from dotenv import load_dotenv
+import dotenv
 import os
 import logging
 
+dotenv.load_dotenv()
 logging.basicConfig(level=logging.DEBUG if DEBUG else logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
