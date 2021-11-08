@@ -1,6 +1,6 @@
 import django
 django.setup()
-from users.models import User
+from adminpanel.models import User
 from telegram.ext import CallbackContext, ConversationHandler
 from telegram import (Update,
                       InlineKeyboardButton,
